@@ -1,0 +1,20 @@
+description "varnish"
+
+start on net-device-up
+stop on runlevel [!2345]
+
+respawn
+respawn limit 5 30
+
+limit nofile <%= node[:varnishd][:limit][:nofile] %> <%= node[:varnishd][:limit][:nofile] %>   
+limit memlock <%= node[:varnishd][:limit][:memlock] %> <%= node[:varnishd][:limit][:memlock] %> 
+
+exec /usr/local/sbin/varnishd\
+  -F\
+  -S /usr/local/etc/varnish/secret\
+  -f /usr/local/etc/varnish/default.vcl\
+<% node[:varnishd][:runtime].each_pair do |key, value| %>
+<% unless value.nil? %>
+  -p <%= key %>=<%= value %>\
+<% end %>
+<% end %>
