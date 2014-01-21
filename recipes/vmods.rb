@@ -20,7 +20,6 @@ node[:varnishd][:vmods].each_pair do |vmod, attributes|
     repository attributes[:repository]
     reference attributes[:reference].to_s == '' ? 'master' : attributes[:reference]
     action :sync
-    notifies :run, 'execute[varnish-vmod-build-#{vmod}]', :immediately
   end
 
   execute "varnish-vmod-build-#{vmod}" do
@@ -31,5 +30,10 @@ node[:varnishd][:vmods].each_pair do |vmod, attributes|
       'VMODDIR' => node[:varnishd][:runtime][:vmod_dir]
     )
     notifies :restart, 'service[varnish]', :delayed
+    only_if do
+      !::File.exists?("/usr/local/src/libvmod-#{vmod}/configure") ||
+      ::File.mtime("/usr/local/src/libvmod-#{vmod}/configure") < ::File.mtime("/usr/local/src/libvmod-#{vmod}/.git") ||
+      ::File.mtime("/usr/local/src/libvmod-#{vmod}/configure") < ::File.mtime('/usr/local/src/varnish')
+    end
   end
 end
