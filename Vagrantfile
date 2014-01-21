@@ -14,6 +14,13 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.json = {
+      varnishd: {
+        vmods: {
+          boltsort: {
+            repository: 'https://github.com/vimeo/libvmod-boltsort.git'
+          }      
+        }
+      }
     }
 
     chef.run_list = [

@@ -8,16 +8,7 @@
 #
 
 include_recipe 'varnishd::build'
-
-
-
-execute 'varnish-secret' do
-  command 'uuidgen > /usr/local/etc/varnish/secret && chmod 0600 /usr/local/etc/varnish/secret'
-  creates '/usr/local/etc/varnish/secret'
-end
-
-
-
+include_recipe 'varnishd::vmods'
 
 user node[:varnishd][:runtime][:user] do
   system true
@@ -28,13 +19,14 @@ group node[:varnishd][:runtime][:group] do
   action :create
 end
 
-
-template '/usr/local/etc/varnish/default.vcl' do
+template 'varnish-vcl' do
+  path '/usr/local/etc/varnish/default.vcl'
   source 'default.vcl.erb'
   notifies :reload, 'service[varnish]', :delayed
 end
 
-template '/etc/init/varnish.conf' do
+template 'varnish-upstart' do
+  path '/etc/init/varnish.conf'
   source 'varnish.conf.erb'
   notifies :restart, 'service[varnish]', :delayed
 end
@@ -45,4 +37,3 @@ service 'varnish' do
   restart_command 'stop varnish && start varnish'
   action [:enable, :start]
 end
-

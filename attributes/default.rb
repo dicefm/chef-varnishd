@@ -6,6 +6,9 @@ default[:varnishd][:checksum] = '302fd6afc771524ca3912f5d945ab197a55762385c012b2
 default[:varnishd][:limit][:nofile] = '131072'
 default[:varnishd][:limit][:memlock] = '82000'
 
+# Vmods
+default[:varnishd][:vmods] = {}
+
 # Run-Time Parameters
 # https://www.varnish-cache.org/docs/3.0/reference/varnishd.html#run-time-parameters
 default[:varnishd][:runtime][:acceptor_sleep_decay] = nil #'0.900'
@@ -84,5 +87,5 @@ default[:varnishd][:runtime][:user] = 'varnishd'
 default[:varnishd][:runtime][:vcc_err_unref] = nil #'on'
 default[:varnishd][:runtime][:vcl_dir] = nil #'/usr/local/etc/varnish'
 default[:varnishd][:runtime][:vcl_trace] = nil #'off'
-default[:varnishd][:runtime][:vmod_dir] = nil #'/usr/local/lib/varnish/vmods'
+default[:varnishd][:runtime][:vmod_dir] = '/usr/local/lib/varnish/vmods'
 default[:varnishd][:runtime][:waiter] = nil #'default'
