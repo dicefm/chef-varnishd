@@ -67,4 +67,4 @@ Please do! We'll follow the [git-flow](http://nvie.com/posts/a-successful-git-br
 
 ## Contributors
 
-* @buth
+* **[@buth](https://github.com/buth)**
