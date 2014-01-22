@@ -2,6 +2,10 @@ default[:varnishd][:version] = '3.0.5'
 default[:varnishd][:url] = 'http://repo.varnish-cache.org/source/varnish-3.0.5.tar.gz'
 default[:varnishd][:checksum] = '302fd6afc771524ca3912f5d945ab197a55762385c012b2054df7d86bf7ae2b7'
 
+# VCL
+default[:varnishd][:vcl_source] = 'default.vcl.erb'
+default[:varnishd][:vcl_cookbook] = 'varnishd'
+
 # Storage Types
 # https://www.varnish-cache.org/docs/3.0/reference/varnishd.html#storage-types
 default[:varnishd][:storage] = 'malloc,128M'

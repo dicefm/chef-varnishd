@@ -31,7 +31,8 @@ end
 
 template 'varnish-vcl' do
   path '/usr/local/etc/varnish/default.vcl'
-  source 'default.vcl.erb'
+  source node[:varnishd][:vcl_source]
+  cookbook node[:varnishd][:vcl_cookbook]
   notifies :reload, 'service[varnish]', :delayed
 end
 

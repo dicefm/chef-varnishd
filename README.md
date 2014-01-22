@@ -36,9 +36,13 @@ key | description | default
 [:varnishd][:version] | Complete Varnish version you are installing | '3.0.5'
 [:varnishd][:url] | URL for an source archive of that version | 'http://repo.varnish-cache.org/source/varnish-3.0.5.tar.gz'
 [:varnishd][:checksum] | Checksum for that archive | '302fd6afc7…'
+[:varnishd][:vcl_source] | Template to use to render the VCL | 'default.vcl.erb'
+[:varnishd][:vcl_cookbook] | Cookbook in which to find that template | 'varnishd'
 [:varnishd][:storage] | Storage type and options | 'malloc,128M'
 [:varnishd][:limit][:nofile] | File limit | '131072'
 [:varnishd][:limit][:memlock] | Memory limit | '82000'
+
+The mechanism for specifying a VCL template in a wrapping cookbook is the same as in the [varnish cookbook](https://github.com/opscode-cookbooks/varnish).
 
 ### VMODs
 
