@@ -12,6 +12,7 @@ limit memlock <%= node[:varnishd][:limit][:memlock] %> <%= node[:varnishd][:limi
 exec /usr/local/sbin/varnishd\
   -F\
   -S /usr/local/etc/varnish/secret\
+  -s <%= node[:varnishd][:storage] %>\
   -f /usr/local/etc/varnish/default.vcl\
 <% node[:varnishd][:runtime].each_pair do |key, value| %>
 <% unless value.nil? %>

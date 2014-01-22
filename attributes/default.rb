@@ -2,11 +2,15 @@ default[:varnishd][:version] = '3.0.5'
 default[:varnishd][:url] = 'http://repo.varnish-cache.org/source/varnish-3.0.5.tar.gz'
 default[:varnishd][:checksum] = '302fd6afc771524ca3912f5d945ab197a55762385c012b2054df7d86bf7ae2b7'
 
+# Storage Types
+# https://www.varnish-cache.org/docs/3.0/reference/varnishd.html#storage-types
+default[:varnishd][:storage] = 'malloc,128M'
+
 # System Limits
 default[:varnishd][:limit][:nofile] = '131072'
 default[:varnishd][:limit][:memlock] = '82000'
 
-# Vmods
+# VMODs
 default[:varnishd][:vmods] = {}
 
 # Run-Time Parameters
@@ -42,8 +46,8 @@ default[:varnishd][:runtime][:gzip_window] = nil #'15'
 default[:varnishd][:runtime][:http_gzip_support] = nil #'on'
 default[:varnishd][:runtime][:http_max_hdr] = nil #'64'
 default[:varnishd][:runtime][:http_range_support] = nil #'on'
-default[:varnishd][:runtime][:http_req_hdr_len] = nil #'32768'
 default[:varnishd][:runtime][:http_req_hdr_len] = nil #'8192'
+default[:varnishd][:runtime][:http_req_size] = nil #'32768'
 default[:varnishd][:runtime][:http_resp_hdr_len] = nil #'8192'
 default[:varnishd][:runtime][:http_resp_size] = nil #'32768'
 default[:varnishd][:runtime][:idle_send_timeout] = nil #'60'
@@ -81,7 +85,7 @@ default[:varnishd][:runtime][:thread_pool_purge_delay] = nil #'1000'
 default[:varnishd][:runtime][:thread_pool_stack] = nil #'-1'
 default[:varnishd][:runtime][:thread_pool_timeout] = nil #'300'
 default[:varnishd][:runtime][:thread_pool_workspace] = nil #'65536'
-default[:varnishd][:runtime][:thread_pools] = nil #'2'
+default[:varnishd][:runtime][:thread_pools] = node['cpu']['total']
 default[:varnishd][:runtime][:thread_stats_rate] = nil #'10'
 default[:varnishd][:runtime][:user] = 'varnishd'
 default[:varnishd][:runtime][:vcc_err_unref] = nil #'on'
