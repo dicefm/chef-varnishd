@@ -39,6 +39,7 @@ key | description | default
 [:varnishd][:vcl_source] | Template to use to render the VCL | 'default.vcl.erb'
 [:varnishd][:vcl_cookbook] | Cookbook in which to find that template | 'varnishd'
 [:varnishd][:storage] | Storage type and options | 'malloc,128M'
+[:varnishd][:pid] | Write the daemon's PID to file | '/var/run/varnishd.pid'
 [:varnishd][:limit][:nofile] | File limit | '131072'
 [:varnishd][:limit][:memlock] | Memory limit | '82000'
 

@@ -14,6 +14,7 @@ exec /usr/local/sbin/varnishd\
   -S /usr/local/etc/varnish/secret\
   -s <%= node[:varnishd][:storage] %>\
   -f /usr/local/etc/varnish/default.vcl\
+  -P <%= node[:varnishd][:pid] %>\
 <% node[:varnishd][:runtime].each_pair do |key, value| %>
 <% unless value.nil? %>
   -p <%= key %>=<%= value %>\
