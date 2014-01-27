@@ -10,6 +10,9 @@ default[:varnishd][:vcl_cookbook] = 'varnishd'
 # https://www.varnish-cache.org/docs/3.0/reference/varnishd.html#storage-types
 default[:varnishd][:storage] = 'malloc,128M'
 
+# PID file location
+default[:varnishd][:pid] = '/var/run/varnishd.pid'
+
 # System Limits
 default[:varnishd][:limit][:nofile] = '131072'
 default[:varnishd][:limit][:memlock] = '82000'
