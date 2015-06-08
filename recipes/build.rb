@@ -21,11 +21,16 @@ include_recipe 'apt'
 include_recipe 'build-essential'
 
 %w[
+  autoconf
+  autotools-dev
+  groff-base
+  libedit-dev
+  libncurses-dev
+  libpcre3-dev
   libtool
   pkg-config
   python-docutils
   xsltproc
-  libpcre3-dev
 ].each do |name|
   package name
 end
