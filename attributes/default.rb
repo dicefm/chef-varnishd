@@ -20,6 +20,9 @@ default[:varnishd][:limit][:memlock] = '82000'
 # VMODs
 default[:varnishd][:vmods] = {}
 
+# ip/port to listen on
+default[:varnishd][:listen_address] = ':80'
+
 # Run-Time Parameters
 # https://www.varnish-cache.org/docs/3.0/reference/varnishd.html#run-time-parameters
 default[:varnishd][:runtime][:acceptor_sleep_decay] = nil #'0.900'
@@ -58,7 +61,6 @@ default[:varnishd][:runtime][:http_req_size] = nil #'32768'
 default[:varnishd][:runtime][:http_resp_hdr_len] = nil #'8192'
 default[:varnishd][:runtime][:http_resp_size] = nil #'32768'
 default[:varnishd][:runtime][:idle_send_timeout] = nil #'60'
-default[:varnishd][:runtime][:listen_address] = ':80'
 default[:varnishd][:runtime][:listen_depth] = nil #'1024'
 default[:varnishd][:runtime][:log_hashstring] = nil #'on'
 default[:varnishd][:runtime][:log_local_address] = nil #'off'
