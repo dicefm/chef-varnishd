@@ -14,7 +14,7 @@ limit memlock <%= node[:varnishd][:limit][:memlock] %> <%= node[:varnishd][:limi
 
 exec /usr/local/sbin/varnishd\
   -F\
-  -a <%= node[:varnishd][:listen_address]\
+  -a <%= node[:varnishd][:listen_address] %>\
   -S /usr/local/etc/varnish/secret\
   -s <%= node[:varnishd][:storage] %>\
   -f /usr/local/etc/varnish/default.vcl\
