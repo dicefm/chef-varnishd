@@ -23,6 +23,10 @@ default[:varnishd][:vmods] = {}
 # ip/port to listen on
 default[:varnishd][:listen_address] = ':80'
 
+# User/group to run as
+default[:varnishd][:user] = 'varnishd'
+default[:varnishd][:group] = 'varnishd'
+
 # Run-Time Parameters
 # https://www.varnish-cache.org/docs/3.0/reference/varnishd.html#run-time-parameters
 default[:varnishd][:runtime][:acceptor_sleep_decay] = nil #'0.900'

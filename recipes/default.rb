@@ -20,12 +20,12 @@
 include_recipe 'varnishd::build'
 include_recipe 'varnishd::vmods'
 
-user node[:varnishd][:runtime][:user] do
+user node[:varnishd][:user] do
   system true
   shell '/bin/false'
 end
 
-group node[:varnishd][:runtime][:group] do
+group node[:varnishd][:group] do
   action :create
 end
 

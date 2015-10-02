@@ -6,6 +6,9 @@ stop on runlevel [!2345]
 respawn
 respawn limit 5 30
 
+setgid <%= node[:varnishd][:user] %>
+setuid <%= node[:varnishd][:group] %>
+
 limit nofile <%= node[:varnishd][:limit][:nofile] %> <%= node[:varnishd][:limit][:nofile] %>
 limit memlock <%= node[:varnishd][:limit][:memlock] %> <%= node[:varnishd][:limit][:memlock] %>
 
