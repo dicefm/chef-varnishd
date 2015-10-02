@@ -58,7 +58,7 @@ execute 'varnish-unpack' do
   command "tar -zxf varnish-#{node[:varnishd][:version]}.tar.gz"
   cwd '/usr/local/src'
   creates "/usr/local/src/varnish-#{node[:varnishd][:version]}"
-end  
+end
 
 execute 'varnish-build' do
   command './autogen.sh && ./configure && make'
@@ -75,4 +75,8 @@ execute 'varnish-install' do
   cwd '/usr/local/src/varnish'
   not_if "/usr/local/sbin/varnishd -V 2>&1 | grep -q '\\bvarnish-#{node[:varnishd][:version]}\\b'"
   notifies :restart, 'service[varnish]', :delayed
+end
+
+link '/lib/libvarnishapi.so.1' do
+  to "/usr/local/lib/libvarnishapi.so.1.0.4"
 end
